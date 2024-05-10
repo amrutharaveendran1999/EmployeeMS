@@ -1,0 +1,20 @@
+.sidebar-container {
+  display: flex;
+ height: 10vh !important;
+  background-color: #eaebfe;
+}
+
+.sidebar {
+  width: 30vh !important;
+  margin-top: 20%;
+}
+
+.sidebar-list-item {
+  margin-left: 5% !important;
+}
+
+.heading-header {
+  margin-left: 2% !important;
+  width: 1000px !important;
+  color: #022954 !important;
+}

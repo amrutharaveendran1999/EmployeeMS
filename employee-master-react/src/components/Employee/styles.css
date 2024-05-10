@@ -1,0 +1,25 @@
+.create-employee-button {
+  position: absolute !important;
+  top: 13.5% !important;
+  right: 10% !important;
+}
+.employee-table-container {
+  margin-left: 10% !important;
+  margin-top: 6% !important;
+}
+.table-head {
+  background-color: #eaebfe !important;
+  display: flex;
+  align-items: center;
+}
+.filter{
+height: 39px !important;
+top: -9px !important;
+left: 650px !important;
+}
+.employee-table-head{
+  color: #022954 !important ;
+  top: 1% !important;
+  left: 15% !important;
+
+}

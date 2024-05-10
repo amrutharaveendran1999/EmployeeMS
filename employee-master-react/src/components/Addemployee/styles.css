@@ -1,0 +1,20 @@
+.form-container {
+  width: 80% !important;
+  border: 0.25px solid #505a74;
+  margin: 10% !important;
+  margin-top: 6% !important;
+  padding-right: 1% !important;
+  border-radius: 12px;
+  height: 65vh !important;
+}
+.employee-details-head {
+  background-color: #eaebfe;
+  height: 50px !important;
+  display: flex;
+  align-items: center;
+  color: #022954 !important;
+  justify-content: center;
+}
+.btn-save-emp {
+  background-color: #022954 !important;
+}

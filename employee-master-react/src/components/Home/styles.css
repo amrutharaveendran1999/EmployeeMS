@@ -1,0 +1,22 @@
+.dashboard-container {
+  display: flex;
+  align-items: center;
+  width: 100% !important;
+  height: 500px !important;
+  background-color: #b0b8ce;
+  border-radius: 12px;
+  margin-top: 5% !important;
+  margin-left: 13% !important;
+}
+.dashboard-card {
+  color: #022954 !important;
+  background-color: #eaebfe !important;
+  align-items: center;
+  justify-content: center;
+  height: 180px !important;
+  display: flex;
+}
+.dashboard-heading {
+  margin-left: 13% !important;
+  margin-top: 3% !important;
+}
