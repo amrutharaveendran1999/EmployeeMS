@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import multer from "multer";
 import path from "path";
+import nodemailer from "nodemailer";
+
 
 const router = express.Router();
 
@@ -104,8 +106,10 @@ router.post("/add_employee", upload.single("photo"), (req, res) => {
   }
 
   const sql = `INSERT INTO employee (firstName,lastName,employeeCode,email,contactNo,department,password,photo) VALUES (?)`;
-  bcrypt.hash(req.body.password, 10, (err, hash) => {
-    if (err) return res.status(500).json({ error: "Hashing error" });
+  const password = generatePassword(); 
+  const hash = bcrypt.hashSync(password, 10); 
+  // bcrypt.hash(req.body.password, 10, (err, hash) => {
+  //   if (err) return res.status(500).json({ error: "Hashing error" });
 
     const values = [
       req.body.firstName,
@@ -121,10 +125,46 @@ router.post("/add_employee", upload.single("photo"), (req, res) => {
       console.log(values);
 
       if (err) return res.json({ Status: false, Error: err });
+      sendMail(req.body.email, password);
       return res.json({ Status: true });
     });
   });
-});
+// });
+
+function sendMail(email, password) {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "amruthacr141014@gmail.com",
+      pass: "vavachi1999",
+    },
+  });
+
+  const mailOptions = {
+    from: "amruthacr141014@gmail.com",
+    to: email,
+    subject: "Welcome to the Employee Management System",
+    text: `Your temporary password is: ${password}. Please use this password to login and change it as soon as possible.`,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log("Error occurred while sending email:", error);
+    } else {
+      console.log("Email sent:", info.response);
+    }
+  });
+}
+
+function generatePassword() {
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let password = "";
+  for (let i = 0; i < 8; i++) {
+    password += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return password;
+}
+
 
 router.get("/employee", (req, res) => {
   const department = req.query.department;

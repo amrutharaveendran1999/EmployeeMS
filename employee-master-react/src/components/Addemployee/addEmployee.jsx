@@ -44,7 +44,7 @@ const AddEmployee = () => {
     formData.append("contactNo", employee.contactNo);
     formData.append("department", employee.department);
     formData.append("password", employee.password);
-    formData.append("photo", employee.photo);
+    formData.append("photo", employee.photo); // Correctly append the photo here
 
     axios
       .post("http://localhost:3000/admin/add_employee", formData, {
@@ -161,7 +161,20 @@ const AddEmployee = () => {
               </Select>
             </FormControl>
           </Grid>
-          
+          <Grid item xs={6}>
+            <Typography>Choose a Profile Pic for employee:</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              type="file"
+              accept="image/*"
+              onChange={
+                (e) => setEmployee({ ...employee, photo: e.target.files[0] }) // Change here
+              }
+              fullWidth
+            />
+          </Grid>
+
           <Grid item mt={2} xs={12} style={{ textAlign: "center" }}>
             <Button type="submit" variant="contained" className="btn-save-emp">
               SAVE EMPLOYEE DETAILS
